@@ -1,0 +1,30 @@
+{
+  "credential_fields": [
+    "Email",
+    "Token",
+    "androidId",
+    "token_binding_alias"
+  ],
+  "const_fields": [
+    "client_sig",
+    "callerSig",
+    "service",
+    "device_country",
+    "lang",
+    "sdk_version",
+    "google_play_services_version",
+    "oauth2_foreground"
+  ],
+  "required_fields": [
+    "client_sig",
+    "callerSig",
+    "service",
+    "device_country",
+    "lang",
+    "sdk_version",
+    "google_play_services_version",
+    "Email",
+    "Token",
+    "androidId"
+  ]
+}

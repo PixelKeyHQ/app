@@ -1,0 +1,577 @@
+[
+  {
+    "profile": {
+      "v": 1,
+      "name": "Photos",
+      "server": "photos.googleapis.com",
+      "auth": {
+        "mode": "exchange",
+        "url": "https://android.googleapis.com/auth",
+        "clientPackage": "com.google.android.apps.photos",
+        "accountField": "Email",
+        "userAgent": "GoogleAuth/1.4 (Pixel XL PQ2A.190205.001); gzip",
+        "headers": {
+          "app": "const:clientPackage",
+          "device": "cred:androidId"
+        },
+        "form": [
+          [
+            "androidId",
+            "cred:androidId"
+          ],
+          [
+            "app",
+            "const:clientPackage"
+          ],
+          [
+            "client_sig",
+            "const:client_sig"
+          ],
+          [
+            "callerPkg",
+            "const:clientPackage"
+          ],
+          [
+            "callerSig",
+            "const:callerSig"
+          ],
+          [
+            "device_country",
+            "const:device_country"
+          ],
+          [
+            "Email",
+            "cred:Email"
+          ],
+          [
+            "google_play_services_version",
+            "const:google_play_services_version"
+          ],
+          [
+            "lang",
+            "const:lang"
+          ],
+          [
+            "sdk_version",
+            "const:sdk_version"
+          ],
+          [
+            "service",
+            "const:service"
+          ],
+          [
+            "Token",
+            "cred:Token"
+          ]
+        ],
+        "const": {
+          "client_sig": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "callerSig": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "service": "oauth2:openid https://www.googleapis.com/auth/photos.native",
+          "device_country": "ca",
+          "lang": "zh_CN",
+          "sdk_version": "35",
+          "google_play_services_version": "250932000"
+        },
+        "response": {
+          "token": "Auth",
+          "expiry": "Expiry",
+          "encrypted": "TokenEncrypted",
+          "error": "Error"
+        },
+        "binding": {
+          "aliasPrefix": "auth_account:ecdsa_keypair:",
+          "namespace": "TokenBinding",
+          "audience": "https://accounts.google.com/accountmanager",
+          "publicKeyType": "type.googleapis.com/google.crypto.tink.EciesAeadHkdfPublicKey",
+          "aeadType": "type.googleapis.com/google.crypto.tink.AesGcmKey",
+          "keysetTypeUrl": "TinkKeysetPublicKeyInfo",
+          "assertionField": "assertion_jwt"
+        }
+      },
+      "endpoints": {
+        "find": "https://photosdata-pa.googleapis.com/6439526531001121323/5084965799730810217",
+        "uploadToken": "https://photos.googleapis.com/data/upload/uploadmedia/interactive",
+        "uploadBytes": "https://photos.googleapis.com/data/upload/uploadmedia/interactive?upload_id={token}",
+        "commit": "https://photosdata-pa.googleapis.com/6439526531001121323/16538846908252377752"
+      },
+      "headers": {
+        "hash": "X-Goog-Hash",
+        "hashAlgorithm": "sha1",
+        "hashFormat": "sha1={base64}",
+        "contentLength": "X-Upload-Content-Length",
+        "uploadId": "X-GUploader-UploadID",
+        "extra": {
+          "x-goog-ext-173412678-bin": "CgcIAhClARgC",
+          "x-goog-ext-174067345-bin": "CgIIAg=="
+        }
+      },
+      "client": {
+        "userAgent": "com.google.android.apps.photos/49029607 (Linux; U; Android 9; en_US; Pixel XL; Build/PQ2A.190205.001; Cronet/127.0.6510.5) (gzip)",
+        "versionCode": 49029607,
+        "platformVersion": 28,
+        "make": "Google"
+      },
+      "quality": {
+        "original": {
+          "code": 3,
+          "model": "Pixel XL"
+        },
+        "compressed": {
+          "code": 1,
+          "model": "Pixel 2"
+        }
+      },
+      "limits": {
+        "photoMaxBytes": 200000000,
+        "videoMaxBytes": 10000000000,
+        "photoTypes": [
+          "jpg",
+          "heic",
+          "heif",
+          "png",
+          "webp",
+          "gif",
+          "avif",
+          "public.camera-raw-image"
+        ],
+        "videoTypes": [
+          "mpg",
+          "mod",
+          "mmv",
+          "tod",
+          "wmv",
+          "asf",
+          "avi",
+          "divx",
+          "mov",
+          "m4v",
+          "3gp",
+          "3g2",
+          "mp4",
+          "m2t",
+          "m2ts",
+          "mts",
+          "mkv",
+          "public.mpeg-2-transport-stream"
+        ]
+      },
+      "wire": {
+        "uploadTokenPrefix": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            3
+          ]
+        ],
+        "commitUnknownInt": 46000000,
+        "commitTrailer": "AQM="
+      },
+      "credential": {
+        "Email": "测试+backup@example.invalid",
+        "Token": "FAKE-NOT-A-REAL-MASTER&=+%/🙂",
+        "androidId": "00123456789abcde"
+      }
+    },
+    "raw": "{\"auth\":{\"accountField\":\"Email\",\"binding\":{\"aeadType\":\"type.googleapis.com/google.crypto.tink.AesGcmKey\",\"aliasPrefix\":\"auth_account:ecdsa_keypair:\",\"assertionField\":\"assertion_jwt\",\"audience\":\"https://accounts.google.com/accountmanager\",\"keysetTypeUrl\":\"TinkKeysetPublicKeyInfo\",\"namespace\":\"TokenBinding\",\"publicKeyType\":\"type.googleapis.com/google.crypto.tink.EciesAeadHkdfPublicKey\"},\"clientPackage\":\"com.google.android.apps.photos\",\"const\":{\"callerSig\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"client_sig\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"device_country\":\"ca\",\"google_play_services_version\":\"250932000\",\"lang\":\"zh_CN\",\"sdk_version\":\"35\",\"service\":\"oauth2:openid https://www.googleapis.com/auth/photos.native\"},\"form\":[[\"androidId\",\"cred:androidId\"],[\"app\",\"const:clientPackage\"],[\"client_sig\",\"const:client_sig\"],[\"callerPkg\",\"const:clientPackage\"],[\"callerSig\",\"const:callerSig\"],[\"device_country\",\"const:device_country\"],[\"Email\",\"cred:Email\"],[\"google_play_services_version\",\"const:google_play_services_version\"],[\"lang\",\"const:lang\"],[\"sdk_version\",\"const:sdk_version\"],[\"service\",\"const:service\"],[\"Token\",\"cred:Token\"]],\"headers\":{\"app\":\"const:clientPackage\",\"device\":\"cred:androidId\"},\"mode\":\"exchange\",\"response\":{\"encrypted\":\"TokenEncrypted\",\"error\":\"Error\",\"expiry\":\"Expiry\",\"token\":\"Auth\"},\"url\":\"https://android.googleapis.com/auth\",\"userAgent\":\"GoogleAuth/1.4 (Pixel XL PQ2A.190205.001); gzip\"},\"client\":{\"make\":\"Google\",\"platformVersion\":28,\"userAgent\":\"com.google.android.apps.photos/49029607 (Linux; U; Android 9; en_US; Pixel XL; Build/PQ2A.190205.001; Cronet/127.0.6510.5) (gzip)\",\"versionCode\":49029607},\"credential\":{\"Email\":\"\\u6d4b\\u8bd5+backup@example.invalid\",\"Token\":\"FAKE-NOT-A-REAL-MASTER&=+%/\\ud83d\\ude42\",\"androidId\":\"00123456789abcde\"},\"endpoints\":{\"commit\":\"https://photosdata-pa.googleapis.com/6439526531001121323/16538846908252377752\",\"find\":\"https://photosdata-pa.googleapis.com/6439526531001121323/5084965799730810217\",\"uploadBytes\":\"https://photos.googleapis.com/data/upload/uploadmedia/interactive?upload_id={token}\",\"uploadToken\":\"https://photos.googleapis.com/data/upload/uploadmedia/interactive\"},\"headers\":{\"contentLength\":\"X-Upload-Content-Length\",\"extra\":{\"x-goog-ext-173412678-bin\":\"CgcIAhClARgC\",\"x-goog-ext-174067345-bin\":\"CgIIAg==\"},\"hash\":\"X-Goog-Hash\",\"hashAlgorithm\":\"sha1\",\"hashFormat\":\"sha1={base64}\",\"uploadId\":\"X-GUploader-UploadID\"},\"limits\":{\"photoMaxBytes\":200000000,\"photoTypes\":[\"jpg\",\"heic\",\"heif\",\"png\",\"webp\",\"gif\",\"avif\",\"public.camera-raw-image\"],\"videoMaxBytes\":10000000000,\"videoTypes\":[\"mpg\",\"mod\",\"mmv\",\"tod\",\"wmv\",\"asf\",\"avi\",\"divx\",\"mov\",\"m4v\",\"3gp\",\"3g2\",\"mp4\",\"m2t\",\"m2ts\",\"mts\",\"mkv\",\"public.mpeg-2-transport-stream\"]},\"name\":\"Photos\",\"quality\":{\"compressed\":{\"code\":1,\"model\":\"Pixel 2\"},\"original\":{\"code\":3,\"model\":\"Pixel XL\"}},\"server\":\"photos.googleapis.com\",\"v\":1,\"wire\":{\"commitTrailer\":\"AQM=\",\"commitUnknownInt\":46000000,\"uploadTokenPrefix\":[[1,2],[2,2],[3,1],[4,3]]}}",
+    "code": "lp1z.pVZ7b9s2EP8qAoENLWrJevqJYFM9tzWadG7qDAXSwKAlRmatVyn61cDffXek5DheEXSo_6DFu-O970c-ELqWSzJ4IDSKinUu33CWxmRAxhnlKWmRBc9jnidKgtF4ti8ZcCX8WUlRJCmjJa-sqMjaemtFYl_KwpI8X1khq95G2Xu2B0U05bSaCnbPd6AArc5rkwMWxRWdr9i-pFwMULaqmJC8yBtvjoT5161EgXXMWR6hK0spy2rQbtfKKqvxA1yqaRnNacIEnAMbFZMYxI1I4fAMvHyvaNP1IuURfE_y-wIkc5qxqqTKxKxYsfx1nYgWKRvR_5eMccRZFUIO363i-6M5cmiRKIVg5JRGK3ATFIKCJgqax6LgsUXLsrLKZSGLCjyIirySWJKIpikTnzjUhyx-8kcag_NKnaM_-YNzMdvwiM1VUsUePUWqdnVepnQ_hzKhSDXfMFFBvUDGDey-59q2DaIpxVYi35fz0QfYVvHqRNALkKQVwLbAHnEHRclyHhtNmbfb7XmuUa6tc2PlVPINw6TeFyIjg9tbUqdwEmPggsWDR8JdC9hl2WR08LQQyD3J1FMhRVISqgTTVfKclmOZjjJHCvLP8toInZFRshlLFYjeIPnZEjTqnhVCLao6jbTaIPW0SA3zlKZk6qod-fUeeWp6Gpf15u6uRZYwCaBBAQuUYPDD5DUth-ynpYMKZ0WMDLaLluArCgsYWdDCUCnAAw4fi5sBHh8JLcKEKASinPqH_a7kqqHH-qNFpHJ0QEKERzC2VnhxBJt6LH_QiXB2DeGHCYQBJ94qCdTSdizfeDHlO5Yany-N6Uc3tJy-7dqBZdvOy6GRfOflIxxgDBldsaMORJ6USuzrf5qZcXtPrT2PHG0fzPU7dtd4ccnz9W5o3AyNUMsZ_aHB8vnNp6HRuDg0Xq95GrfPPB0aI1HkTLYdt2vZVidwbCt4abxA91-Ck3VfjFR1GosHXX_wktMUQ9O9OyBf1p3YX3xZ9xZx8GoBZV-Xf7IdzUoIgecbuDWwXrO6Gm_C92Pzw98zMzSvx-GleRV-mo2vf7949Vv7yzrueTGszHfxhjh2yoCA067nB51ur08XUazggeVxWXC4LxSMFlnG5Ul9db5iKqlZ0vMqd3yvH7idwHNAseM6nuu1Hdj2en6nb_fcwPW63W6AXtzDpfEragO75_c7Qbff73p2z7Fdp4v9VaYFjV_vJav-o_xcKxpr6wP1X8ZiTtsQOhM0QrT8Q9PnPL54UG1_ONpo8v7LNjDlJxMPsy6hFy5ZnuDrg3w2b9Q5c6QZZs3ByZSC4pGdiVZN2JtO1_MdF8ppwusETo-SaBIuR2l4nYzgyBNJ3-6AdHCUnEzC5OJCuUMrbRrHy3yHO00M06QQXC7h-iDVkjo1-Q0MHpU17eJhQSvW8R9TpToNlOlAmKgjmvyFtlIO_aUiVxm8oru6engvql9Lc_BJAeRb8rVEKF4yHum_exx_Bc9btsAbK1EkutEc9ZywIni0CGoKujV5pi8fsuExOzHo2PajScU7msyUSUBVXLONAkH83qpvWtX2EJT5ZqdEkZH5uHpJqVbs-qz0cXWlXvHFkul1tXl0NitZYromlDcH1BbSrKRgNCN3B_36gnROmwfPtzUAgdzXs1oCzlcI7LhDlHH0ZYB4osHLxaRDEROea7jRct653OdLcjjoRwfD--CH_Y2YpmxsuWCPcDETgGDqVPjx6kJdfUi-yVd5sc0niMd-p8n0yTg1b-DbW6flwgXpqtVrObD6Le_u7nD4Fw"
+  },
+  {
+    "profile": {
+      "v": 1,
+      "name": "Photos",
+      "server": "photos.googleapis.com",
+      "auth": {
+        "mode": "exchange",
+        "url": "https://android.googleapis.com/auth",
+        "clientPackage": "com.google.android.apps.photos",
+        "accountField": "Email",
+        "userAgent": "GoogleAuth/1.4 (Pixel XL PQ2A.190205.001); gzip",
+        "headers": {
+          "app": "const:clientPackage",
+          "device": "cred:androidId"
+        },
+        "form": [
+          [
+            "androidId",
+            "cred:androidId"
+          ],
+          [
+            "app",
+            "const:clientPackage"
+          ],
+          [
+            "client_sig",
+            "const:client_sig"
+          ],
+          [
+            "callerPkg",
+            "const:clientPackage"
+          ],
+          [
+            "callerSig",
+            "const:callerSig"
+          ],
+          [
+            "device_country",
+            "const:device_country"
+          ],
+          [
+            "Email",
+            "cred:Email"
+          ],
+          [
+            "google_play_services_version",
+            "const:google_play_services_version"
+          ],
+          [
+            "lang",
+            "const:lang"
+          ],
+          [
+            "oauth2_foreground",
+            "const:oauth2_foreground"
+          ],
+          [
+            "sdk_version",
+            "const:sdk_version"
+          ],
+          [
+            "service",
+            "const:service"
+          ],
+          [
+            "Token",
+            "cred:Token"
+          ]
+        ],
+        "const": {
+          "client_sig": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "callerSig": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "service": "oauth2:openid https://www.googleapis.com/auth/photos.native",
+          "device_country": "ca",
+          "lang": "zh_CN",
+          "sdk_version": "35",
+          "google_play_services_version": "250932000",
+          "oauth2_foreground": "1"
+        },
+        "response": {
+          "token": "Auth",
+          "expiry": "Expiry",
+          "encrypted": "TokenEncrypted",
+          "error": "Error"
+        },
+        "binding": {
+          "aliasPrefix": "auth_account:ecdsa_keypair:",
+          "namespace": "TokenBinding",
+          "audience": "https://accounts.google.com/accountmanager",
+          "publicKeyType": "type.googleapis.com/google.crypto.tink.EciesAeadHkdfPublicKey",
+          "aeadType": "type.googleapis.com/google.crypto.tink.AesGcmKey",
+          "keysetTypeUrl": "TinkKeysetPublicKeyInfo",
+          "assertionField": "assertion_jwt"
+        }
+      },
+      "endpoints": {
+        "find": "https://photosdata-pa.googleapis.com/6439526531001121323/5084965799730810217",
+        "uploadToken": "https://photos.googleapis.com/data/upload/uploadmedia/interactive",
+        "uploadBytes": "https://photos.googleapis.com/data/upload/uploadmedia/interactive?upload_id={token}",
+        "commit": "https://photosdata-pa.googleapis.com/6439526531001121323/16538846908252377752"
+      },
+      "headers": {
+        "hash": "X-Goog-Hash",
+        "hashAlgorithm": "sha1",
+        "hashFormat": "sha1={base64}",
+        "contentLength": "X-Upload-Content-Length",
+        "uploadId": "X-GUploader-UploadID",
+        "extra": {
+          "x-goog-ext-173412678-bin": "CgcIAhClARgC",
+          "x-goog-ext-174067345-bin": "CgIIAg=="
+        }
+      },
+      "client": {
+        "userAgent": "com.google.android.apps.photos/49029607 (Linux; U; Android 9; en_US; Pixel XL; Build/PQ2A.190205.001; Cronet/127.0.6510.5) (gzip)",
+        "versionCode": 49029607,
+        "platformVersion": 28,
+        "make": "Google"
+      },
+      "quality": {
+        "original": {
+          "code": 3,
+          "model": "Pixel XL"
+        },
+        "compressed": {
+          "code": 1,
+          "model": "Pixel 2"
+        }
+      },
+      "limits": {
+        "photoMaxBytes": 200000000,
+        "videoMaxBytes": 10000000000,
+        "photoTypes": [
+          "jpg",
+          "heic",
+          "heif",
+          "png",
+          "webp",
+          "gif",
+          "avif",
+          "public.camera-raw-image"
+        ],
+        "videoTypes": [
+          "mpg",
+          "mod",
+          "mmv",
+          "tod",
+          "wmv",
+          "asf",
+          "avi",
+          "divx",
+          "mov",
+          "m4v",
+          "3gp",
+          "3g2",
+          "mp4",
+          "m2t",
+          "m2ts",
+          "mts",
+          "mkv",
+          "public.mpeg-2-transport-stream"
+        ]
+      },
+      "wire": {
+        "uploadTokenPrefix": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            3
+          ]
+        ],
+        "commitUnknownInt": 46000000,
+        "commitTrailer": "AQM="
+      },
+      "credential": {
+        "Email": "测试+backup@example.invalid",
+        "Token": "FAKE-NOT-A-REAL-MASTER&=+%/🙂",
+        "androidId": "00123456789abcde"
+      }
+    },
+    "raw": "{\"auth\":{\"accountField\":\"Email\",\"binding\":{\"aeadType\":\"type.googleapis.com/google.crypto.tink.AesGcmKey\",\"aliasPrefix\":\"auth_account:ecdsa_keypair:\",\"assertionField\":\"assertion_jwt\",\"audience\":\"https://accounts.google.com/accountmanager\",\"keysetTypeUrl\":\"TinkKeysetPublicKeyInfo\",\"namespace\":\"TokenBinding\",\"publicKeyType\":\"type.googleapis.com/google.crypto.tink.EciesAeadHkdfPublicKey\"},\"clientPackage\":\"com.google.android.apps.photos\",\"const\":{\"callerSig\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"client_sig\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"device_country\":\"ca\",\"google_play_services_version\":\"250932000\",\"lang\":\"zh_CN\",\"oauth2_foreground\":\"1\",\"sdk_version\":\"35\",\"service\":\"oauth2:openid https://www.googleapis.com/auth/photos.native\"},\"form\":[[\"androidId\",\"cred:androidId\"],[\"app\",\"const:clientPackage\"],[\"client_sig\",\"const:client_sig\"],[\"callerPkg\",\"const:clientPackage\"],[\"callerSig\",\"const:callerSig\"],[\"device_country\",\"const:device_country\"],[\"Email\",\"cred:Email\"],[\"google_play_services_version\",\"const:google_play_services_version\"],[\"lang\",\"const:lang\"],[\"oauth2_foreground\",\"const:oauth2_foreground\"],[\"sdk_version\",\"const:sdk_version\"],[\"service\",\"const:service\"],[\"Token\",\"cred:Token\"]],\"headers\":{\"app\":\"const:clientPackage\",\"device\":\"cred:androidId\"},\"mode\":\"exchange\",\"response\":{\"encrypted\":\"TokenEncrypted\",\"error\":\"Error\",\"expiry\":\"Expiry\",\"token\":\"Auth\"},\"url\":\"https://android.googleapis.com/auth\",\"userAgent\":\"GoogleAuth/1.4 (Pixel XL PQ2A.190205.001); gzip\"},\"client\":{\"make\":\"Google\",\"platformVersion\":28,\"userAgent\":\"com.google.android.apps.photos/49029607 (Linux; U; Android 9; en_US; Pixel XL; Build/PQ2A.190205.001; Cronet/127.0.6510.5) (gzip)\",\"versionCode\":49029607},\"credential\":{\"Email\":\"\\u6d4b\\u8bd5+backup@example.invalid\",\"Token\":\"FAKE-NOT-A-REAL-MASTER&=+%/\\ud83d\\ude42\",\"androidId\":\"00123456789abcde\"},\"endpoints\":{\"commit\":\"https://photosdata-pa.googleapis.com/6439526531001121323/16538846908252377752\",\"find\":\"https://photosdata-pa.googleapis.com/6439526531001121323/5084965799730810217\",\"uploadBytes\":\"https://photos.googleapis.com/data/upload/uploadmedia/interactive?upload_id={token}\",\"uploadToken\":\"https://photos.googleapis.com/data/upload/uploadmedia/interactive\"},\"headers\":{\"contentLength\":\"X-Upload-Content-Length\",\"extra\":{\"x-goog-ext-173412678-bin\":\"CgcIAhClARgC\",\"x-goog-ext-174067345-bin\":\"CgIIAg==\"},\"hash\":\"X-Goog-Hash\",\"hashAlgorithm\":\"sha1\",\"hashFormat\":\"sha1={base64}\",\"uploadId\":\"X-GUploader-UploadID\"},\"limits\":{\"photoMaxBytes\":200000000,\"photoTypes\":[\"jpg\",\"heic\",\"heif\",\"png\",\"webp\",\"gif\",\"avif\",\"public.camera-raw-image\"],\"videoMaxBytes\":10000000000,\"videoTypes\":[\"mpg\",\"mod\",\"mmv\",\"tod\",\"wmv\",\"asf\",\"avi\",\"divx\",\"mov\",\"m4v\",\"3gp\",\"3g2\",\"mp4\",\"m2t\",\"m2ts\",\"mts\",\"mkv\",\"public.mpeg-2-transport-stream\"]},\"name\":\"Photos\",\"quality\":{\"compressed\":{\"code\":1,\"model\":\"Pixel 2\"},\"original\":{\"code\":3,\"model\":\"Pixel XL\"}},\"server\":\"photos.googleapis.com\",\"v\":1,\"wire\":{\"commitTrailer\":\"AQM=\",\"commitUnknownInt\":46000000,\"uploadTokenPrefix\":[[1,2],[2,2],[3,1],[4,3]]}}",
+    "code": "lp1z.pVZ7b9s2EP8qAoENLWrJevqJYFM9pzWSdm7rDAXSwKAlRmat1yj61cDffXek5DhuEXSb_6DFu-O970c-ELqWSzJ4IDSKinUuLzlLYzIg44zylLTIgucxzxMlwWg825cMuBL-rKQokpTRkldWVGRtvbUisS9lYUmer6yQVW-i7IrtQRFNOa2mgt3zHShAq_Pa5IBFcUXnK7YvKRcDlK0qJiQv8sabI2H-dStRYB1zlkfoylLKshq027Wyymr8AJdqWkZzmjAB58BGxSQGcSNSODwDL68UbbpepDyC70l-X4BkTjNWlVSZmBUrlr-uE9EiZSP675IxjjirQsjh21V8fzRHDi0SpRCMnNJoBW6CQlDQREHzWBQ8tmhZVla5LGRRgQdRkVcSSxLRNGXiE4f6kMVP_khjcF6pc_Qnf3AuZhsesblKqtijp0jVrs7LlO7nUCYUqeYbJiqoF8i4gd33XNu2QTSl2Erk23I-eg_bAtvAnd8XgiUClGKpHaBX8epEgRcgSSuGrT40KEqW89hoyr_dbs9rgHJtnTMrp5JvGCYbjGVkcHtL6tROYkyIYPHgkXDXAnZZNpkePC0Qck8y-FRIkZSEKs10lTyn5Vi-o8yRgvyzfDdCZ2SUbMZVBaI3SH62NI26Z4VQi6paI602SP2-eI3I9xyUPy1qI3lKUzJ1lY_8eo88NYVNiHpzd9ciS5go0KAACko2-GGym9ZF9tNSQ0dkRYwMtouWEBsKCxh90MJQKcAMDjGLGyAYHwktwoQoBKKl-of9ruRqMMb6o0WkcnRAQoRZMLZWuHMErXq8f9C5cHYN4YcJhAEn3igJ1NJ2LN94MeU7lhqfr43pBze0nL7t2oFl287LoZF84-UjrGAMGV2xow5EsJRKnIO_mhlze0-tPY9AbR_M9Tt213hxzfP1bmjcDI1Qyxn9ocHy-c2nodG4ODRer3kat888HRojUeRMth23a9lWJ3BsK3hpvED3X4KTdV-MVHUaiwddf_CS0xRD070-IF_WndhffFn3FnHwagFlX5e_sx3NSgiB5xu4fbBes7oal-HV2Hz_58wMzY_j8Np8F36ajT_-evHql_aXddzzYliZ7-JNc-yUAQGnXc8POt1eny6iWMEJy-Oy4HDvKDgusozLk_rqfMVUUrOk51Xu-F4_cDuB54Bix3U812s7sO31_E7f7rmB63W73QC9uOcKG_-z2sDu-f1O0O33u57dc2zX6WJ_lWlB49d7yarvlJ9rRWNtfaD-y1jMaRtCZ4JGiK6_afqcxxcPqu0PRxtN3v-3DUz5ycTDrEvohWuWJ_iKIZ_NG3XOHGmGWXNwMqWgeGRnolUT9qbT9XzHhXKa8MqB06MkmoTLURp-TEZw5Imkb3dAOjhKTiZhcnGh3KGVNo3jZb7FnSaGaVIILpdw3ZBqSZ2afAmDR2VNu3hY0Ip1_MdUqU4DZToQJuqIJn-grZRDf6nIVQbf0V1dPbxf1a-lOfg0AfIt-VoidC8Zj_TfPY6_gvMtW-ANlygS3WiOepZYETx-BDUF3Zo805cV2fCYnRh0bPvRpOIdTWbKJKAqrtlGgSB-b9U3rWp7CMp8s1OiyMh8XL2kVCt2fVb6uLpSr_jyyfS62jw6m5UsMV0TypsDagtpVlIwmpG7g37FQTqnzcPp7zUAgdzXs1oCzlcI7LhDlHH0ZYB4osHLxaRDEROea7jRct653OdrcjjoRwrD--CH_Y2YpmxsuWCPcDETgGDqVPjh3YW6-pB8k6_yYptPEI_9TpPpk3Fq3tK3t07LhQvSVavXcmD1W97d3eHwDw"
+  },
+  {
+    "profile": {
+      "v": 1,
+      "name": "Photos",
+      "server": "photos.googleapis.com",
+      "auth": {
+        "mode": "exchange",
+        "url": "https://android.googleapis.com/auth",
+        "clientPackage": "com.google.android.apps.photos",
+        "accountField": "Email",
+        "userAgent": "GoogleAuth/1.4 (Pixel XL PQ2A.190205.001); gzip",
+        "headers": {
+          "app": "const:clientPackage",
+          "device": "cred:androidId"
+        },
+        "form": [
+          [
+            "androidId",
+            "cred:androidId"
+          ],
+          [
+            "app",
+            "const:clientPackage"
+          ],
+          [
+            "client_sig",
+            "const:client_sig"
+          ],
+          [
+            "callerPkg",
+            "const:clientPackage"
+          ],
+          [
+            "callerSig",
+            "const:callerSig"
+          ],
+          [
+            "device_country",
+            "const:device_country"
+          ],
+          [
+            "Email",
+            "cred:Email"
+          ],
+          [
+            "google_play_services_version",
+            "const:google_play_services_version"
+          ],
+          [
+            "lang",
+            "const:lang"
+          ],
+          [
+            "oauth2_foreground",
+            "const:oauth2_foreground"
+          ],
+          [
+            "sdk_version",
+            "const:sdk_version"
+          ],
+          [
+            "service",
+            "const:service"
+          ],
+          [
+            "Token",
+            "cred:Token"
+          ]
+        ],
+        "const": {
+          "client_sig": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "callerSig": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "service": "oauth2:openid https://www.googleapis.com/auth/photos.native",
+          "device_country": "ca",
+          "lang": "zh_CN",
+          "sdk_version": "35",
+          "google_play_services_version": "250932000",
+          "oauth2_foreground": "1"
+        },
+        "response": {
+          "token": "Auth",
+          "expiry": "Expiry",
+          "encrypted": "TokenEncrypted",
+          "error": "Error"
+        },
+        "binding": {
+          "aliasPrefix": "auth_account:ecdsa_keypair:",
+          "namespace": "TokenBinding",
+          "audience": "https://accounts.google.com/accountmanager",
+          "publicKeyType": "type.googleapis.com/google.crypto.tink.EciesAeadHkdfPublicKey",
+          "aeadType": "type.googleapis.com/google.crypto.tink.AesGcmKey",
+          "keysetTypeUrl": "TinkKeysetPublicKeyInfo",
+          "assertionField": "assertion_jwt"
+        }
+      },
+      "endpoints": {
+        "find": "https://photosdata-pa.googleapis.com/6439526531001121323/5084965799730810217",
+        "uploadToken": "https://photos.googleapis.com/data/upload/uploadmedia/interactive",
+        "uploadBytes": "https://photos.googleapis.com/data/upload/uploadmedia/interactive?upload_id={token}",
+        "commit": "https://photosdata-pa.googleapis.com/6439526531001121323/16538846908252377752"
+      },
+      "headers": {
+        "hash": "X-Goog-Hash",
+        "hashAlgorithm": "sha1",
+        "hashFormat": "sha1={base64}",
+        "contentLength": "X-Upload-Content-Length",
+        "uploadId": "X-GUploader-UploadID",
+        "extra": {
+          "x-goog-ext-173412678-bin": "CgcIAhClARgC",
+          "x-goog-ext-174067345-bin": "CgIIAg=="
+        }
+      },
+      "client": {
+        "userAgent": "com.google.android.apps.photos/49029607 (Linux; U; Android 9; en_US; Pixel XL; Build/PQ2A.190205.001; Cronet/127.0.6510.5) (gzip)",
+        "versionCode": 49029607,
+        "platformVersion": 28,
+        "make": "Google"
+      },
+      "quality": {
+        "original": {
+          "code": 3,
+          "model": "Pixel XL"
+        },
+        "compressed": {
+          "code": 1,
+          "model": "Pixel 2"
+        }
+      },
+      "limits": {
+        "photoMaxBytes": 200000000,
+        "videoMaxBytes": 10000000000,
+        "photoTypes": [
+          "jpg",
+          "heic",
+          "heif",
+          "png",
+          "webp",
+          "gif",
+          "avif",
+          "public.camera-raw-image"
+        ],
+        "videoTypes": [
+          "mpg",
+          "mod",
+          "mmv",
+          "tod",
+          "wmv",
+          "asf",
+          "avi",
+          "divx",
+          "mov",
+          "m4v",
+          "3gp",
+          "3g2",
+          "mp4",
+          "m2t",
+          "m2ts",
+          "mts",
+          "mkv",
+          "public.mpeg-2-transport-stream"
+        ]
+      },
+      "wire": {
+        "uploadTokenPrefix": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            3
+          ]
+        ],
+        "commitUnknownInt": 46000000,
+        "commitTrailer": "AQM="
+      },
+      "credential": {
+        "Email": "测试+backup@example.invalid",
+        "Token": "FAKE-NOT-A-REAL-MASTER&=+%/🙂",
+        "androidId": "00123456789abcde",
+        "token_binding_alias": "auth_account:ecdsa_keypair:CooBMIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGhRANCAARrF9Hy4SxCR_i85uVjpEDydwN9gS3rM6D0oTlF2JjClk_jQuL-Gn-bjufrSnwPnhYrzjNXazFezsu2QGg3v1H1ElswWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAARrF9Hy4SxCR_i85uVjpEDydwN9gS3rM6D0oTlF2JjClk_jQuL-Gn-bjufrSnwPnhYrzjNXazFezsu2QGg3v1H1"
+      }
+    },
+    "raw": "{\"auth\":{\"accountField\":\"Email\",\"binding\":{\"aeadType\":\"type.googleapis.com/google.crypto.tink.AesGcmKey\",\"aliasPrefix\":\"auth_account:ecdsa_keypair:\",\"assertionField\":\"assertion_jwt\",\"audience\":\"https://accounts.google.com/accountmanager\",\"keysetTypeUrl\":\"TinkKeysetPublicKeyInfo\",\"namespace\":\"TokenBinding\",\"publicKeyType\":\"type.googleapis.com/google.crypto.tink.EciesAeadHkdfPublicKey\"},\"clientPackage\":\"com.google.android.apps.photos\",\"const\":{\"callerSig\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"client_sig\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"device_country\":\"ca\",\"google_play_services_version\":\"250932000\",\"lang\":\"zh_CN\",\"oauth2_foreground\":\"1\",\"sdk_version\":\"35\",\"service\":\"oauth2:openid https://www.googleapis.com/auth/photos.native\"},\"form\":[[\"androidId\",\"cred:androidId\"],[\"app\",\"const:clientPackage\"],[\"client_sig\",\"const:client_sig\"],[\"callerPkg\",\"const:clientPackage\"],[\"callerSig\",\"const:callerSig\"],[\"device_country\",\"const:device_country\"],[\"Email\",\"cred:Email\"],[\"google_play_services_version\",\"const:google_play_services_version\"],[\"lang\",\"const:lang\"],[\"oauth2_foreground\",\"const:oauth2_foreground\"],[\"sdk_version\",\"const:sdk_version\"],[\"service\",\"const:service\"],[\"Token\",\"cred:Token\"]],\"headers\":{\"app\":\"const:clientPackage\",\"device\":\"cred:androidId\"},\"mode\":\"exchange\",\"response\":{\"encrypted\":\"TokenEncrypted\",\"error\":\"Error\",\"expiry\":\"Expiry\",\"token\":\"Auth\"},\"url\":\"https://android.googleapis.com/auth\",\"userAgent\":\"GoogleAuth/1.4 (Pixel XL PQ2A.190205.001); gzip\"},\"client\":{\"make\":\"Google\",\"platformVersion\":28,\"userAgent\":\"com.google.android.apps.photos/49029607 (Linux; U; Android 9; en_US; Pixel XL; Build/PQ2A.190205.001; Cronet/127.0.6510.5) (gzip)\",\"versionCode\":49029607},\"credential\":{\"Email\":\"\\u6d4b\\u8bd5+backup@example.invalid\",\"Token\":\"FAKE-NOT-A-REAL-MASTER&=+%/\\ud83d\\ude42\",\"androidId\":\"00123456789abcde\",\"token_binding_alias\":\"auth_account:ecdsa_keypair:CooBMIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGhRANCAARrF9Hy4SxCR_i85uVjpEDydwN9gS3rM6D0oTlF2JjClk_jQuL-Gn-bjufrSnwPnhYrzjNXazFezsu2QGg3v1H1ElswWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAARrF9Hy4SxCR_i85uVjpEDydwN9gS3rM6D0oTlF2JjClk_jQuL-Gn-bjufrSnwPnhYrzjNXazFezsu2QGg3v1H1\"},\"endpoints\":{\"commit\":\"https://photosdata-pa.googleapis.com/6439526531001121323/16538846908252377752\",\"find\":\"https://photosdata-pa.googleapis.com/6439526531001121323/5084965799730810217\",\"uploadBytes\":\"https://photos.googleapis.com/data/upload/uploadmedia/interactive?upload_id={token}\",\"uploadToken\":\"https://photos.googleapis.com/data/upload/uploadmedia/interactive\"},\"headers\":{\"contentLength\":\"X-Upload-Content-Length\",\"extra\":{\"x-goog-ext-173412678-bin\":\"CgcIAhClARgC\",\"x-goog-ext-174067345-bin\":\"CgIIAg==\"},\"hash\":\"X-Goog-Hash\",\"hashAlgorithm\":\"sha1\",\"hashFormat\":\"sha1={base64}\",\"uploadId\":\"X-GUploader-UploadID\"},\"limits\":{\"photoMaxBytes\":200000000,\"photoTypes\":[\"jpg\",\"heic\",\"heif\",\"png\",\"webp\",\"gif\",\"avif\",\"public.camera-raw-image\"],\"videoMaxBytes\":10000000000,\"videoTypes\":[\"mpg\",\"mod\",\"mmv\",\"tod\",\"wmv\",\"asf\",\"avi\",\"divx\",\"mov\",\"m4v\",\"3gp\",\"3g2\",\"mp4\",\"m2t\",\"m2ts\",\"mts\",\"mkv\",\"public.mpeg-2-transport-stream\"]},\"name\":\"Photos\",\"quality\":{\"compressed\":{\"code\":1,\"model\":\"Pixel 2\"},\"original\":{\"code\":3,\"model\":\"Pixel XL\"}},\"server\":\"photos.googleapis.com\",\"v\":1,\"wire\":{\"commitTrailer\":\"AQM=\",\"commitUnknownInt\":46000000,\"uploadTokenPrefix\":[[1,2],[2,2],[3,1],[4,3]]}}",
+    "code": "lp1z.tRdrb-JG8K8gS63udNj4xTOKWsMRQi_kICHXVLnIWuyNWfDr1jaGRPz3zqxtQnKn6Nqq_rDszszO-7E8SSRLl1LvSSKOE2Vhesao70o9aRgQ5kt1acFCl4WeoKDEne9iCtgUfhQvijyfkpglihMFjeKoOHwXp5GSsnCtWDQZOcEnugNGxGckmXL6wLbAAKXapcgeddyE2Gu6iwnjPaRNEspTFoWVNgeAvcpTJMhcRkMHVVmmaZz0Go2SWaJUeoBKJSwgIfEoh3sgI6EpGnHDfbg8By0_Cdg0W_jMgf04fIiAMiQBTWIiRMyjNQ37pSPqUlyR_jNnDB1GEwt8eL52Hw7ipH1dcnwwJp0SZw1qAkNgUFlBQpdHzFVIHCdKvIzSKAENnChMUgyJQ3yf8msG8ZEWP_lJlUA7EffIT35wz6Ub5lBbOJXvUFOEFqrasU92NoQJSRJ7Q3kC8QIaval2DV1VVSD1CaaS9Li0B5dwjDANdPsh4tTjwBRDrQE8cddHDIwmggrGcCwu9aKYhsytVeHP8_x1DJCuUfhMCUnKNhSdDcICqXd3J5WuHbvoEE7d3jPgvg7oOK483XsZIMQeefAlkQAJChGa6dp7i8shfAeaAwTxr_xdEb0CI2VVrsKQ4oDgN0NTsXuTCLmIqFXU4oDQ74NXkXyPQfrjoFaUxzBBU0b5gC_PiBNVWJlYHO7v69ISKgo4iAYFIev90NlV6iL6ZaghI4LIRQTdOkuwDYk5lD5wocgU2gwWMXWrRjA8AOoS5Tzi2C3FL5y3MROFMSw2dSkVivYkC9ssCMtE3zk0rbK8f5C5cDcD8y0PzIAbI0GBXBqaYtbeTdmW-rXbi9p0pluK1lV1tamoqvb-pOY9svi5raANAVnTAw_sYD5JsQ6-VDWmd15Ke7sDNUwQ122p7dq7CxZm25PazUnNKuhq3ZMaDe2b65NapeJJrZ8x32280vSkNuBRSNOGprcVVWk1NVVpvq-9Q_Xfg5JlXgxEdCqJ-yL-oCUjPppW5HpP-pq1XHPxNess3OaHBYQ9i3-nWxLEYAILNzB9MF7zMhpn1qehfPl5Llvy1dC6kCfW9Xx49evph18aXzO3Y7iwUlPHSXPIlJ4ESuuG2Wy1O12ycFxahdcuh6QtZtzb020QRf3JeHRueUNr0p-M-rtvo-uJ2YXzaDAo9_nwvD9Sc5KP-9Zs5lk__Y2WV9blwLKu-Fn3fGdebwdXNus0sy-rePhx5-aXXe_a4JPWRzWa-2f6H6uBv7ZXs-xCHoXyYpU98Oswn4bLv_jj6vKWPJ7RxyTTZyPP2Gjn2tBP8j_n1rzvOd-W69Xn6Wzc73teuZ_0-_n_JxsTmoZuHDGY8WL0RUHA0qNaKnLTJSmRY_K6olqm0W3qraahQRA1XTN0o6HBsdMxW121ozd1o91uNzHiD0zMoX_Ntql2zG6r2e5224ba0VRda2Mtx35E3P4upcl3zF9zRWGN4kL5E1CXkQaYTjlxcJL9VsBt5p4-iRzcH2RUOf6fZaDLj7or9NUU6u6Chh6-GKVb-UbckwcFQi4x2AVTTvDKVkapMpxlrW2Ymg6lI0OxwO2B54yt5cC3rrwBXHlBaaotoG4eKMdjyzs9FeqQpBCNrUw-x1MBtHwv4ixdwmiXkiXRSvAZNDmSlrDTpwVJaMt8dpWoamBWGEJ5adH4I8ryGeSXsFx4cEK2ZfTwLSO-eoHBZyCA76RVjGNySZlT_DxgqxWjM6cLfE14AkQ2BUY8ARUHHpqcyJzkMguKh4G0YS49Eqip6rNIgTuIDIRImGC4BhvRkXCfiz1JSnk4ANlmK0gREZi4Gl4sVsz6IDZx1dNixVdmUKzrzbOyQUw9WZchvCFMSJ7KScopCaT7ffFiBndOq0fqtwzaYborazWGmZrgEMUTdnStGLzYu4tBoaPTIYgeC4vWXtAZr-luL6T9vngQUpy9P8xvnB9CRs44fW4Xcw7TQtyyZpNT8cxA8E24DqM8HOPsM1uVp4_Kqfrfcnen1XV4jOhiNeoarGbduL_f7_8G"
+  }
+]

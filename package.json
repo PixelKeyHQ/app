@@ -1,0 +1,41 @@
+{
+  "name": "pixel-key",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "main": "register.ts",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "typecheck": "tsc --noEmit",
+    "test": "node --import tsx --test test/*.test.ts"
+  },
+  "dependencies": {
+    "@noble/ciphers": "2.0.1",
+    "@noble/curves": "2.0.1",
+    "@noble/hashes": "2.0.1",
+    "expo": "~57.0.23",
+    "expo-build-properties": "~57.0.22",
+    "expo-clipboard": "~57.0.2",
+    "expo-crypto": "~57.0.3",
+    "expo-screen-capture": "~57.0.4",
+    "expo-system-ui": "~57.0.4",
+    "fflate": "0.8.2",
+    "qrcode-generator": "1.4.4",
+    "react": "19.2.3",
+    "react-native": "0.86.3",
+    "react-native-safe-area-context": "~5.7.0",
+    "react-native-svg": "15.15.4",
+    "react-native-webview": "13.16.1"
+  },
+  "devDependencies": {
+    "@types/node": "~26.6.4",
+    "@types/react": "~19.2.0",
+    "tsx": "^4.20.0",
+    "typescript": "~6.0.3"
+  },
+  "engines": {
+    "node": ">=22.13.0"
+  }
+}

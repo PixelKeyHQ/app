@@ -1,0 +1,175 @@
+{
+  "v": 1,
+  "name": "Photos",
+  "server": "photos.googleapis.com",
+  "auth": {
+    "mode": "exchange",
+    "url": "https://android.googleapis.com/auth",
+    "clientPackage": "com.google.android.apps.photos",
+    "accountField": "Email",
+    "userAgent": "GoogleAuth/1.4 (Pixel XL PQ2A.190205.001); gzip",
+    "headers": {
+      "app": "const:clientPackage",
+      "device": "cred:androidId"
+    },
+    "form": [
+      [
+        "androidId",
+        "cred:androidId"
+      ],
+      [
+        "app",
+        "const:clientPackage"
+      ],
+      [
+        "client_sig",
+        "const:client_sig"
+      ],
+      [
+        "callerPkg",
+        "const:clientPackage"
+      ],
+      [
+        "callerSig",
+        "const:callerSig"
+      ],
+      [
+        "device_country",
+        "const:device_country"
+      ],
+      [
+        "Email",
+        "cred:Email"
+      ],
+      [
+        "google_play_services_version",
+        "const:google_play_services_version"
+      ],
+      [
+        "lang",
+        "const:lang"
+      ],
+      [
+        "oauth2_foreground",
+        "const:oauth2_foreground"
+      ],
+      [
+        "sdk_version",
+        "const:sdk_version"
+      ],
+      [
+        "service",
+        "const:service"
+      ],
+      [
+        "Token",
+        "cred:Token"
+      ]
+    ],
+    "const": {},
+    "response": {
+      "token": "Auth",
+      "expiry": "Expiry",
+      "encrypted": "TokenEncrypted",
+      "error": "Error"
+    },
+    "binding": {
+      "aliasPrefix": "auth_account:ecdsa_keypair:",
+      "namespace": "TokenBinding",
+      "audience": "https://accounts.google.com/accountmanager",
+      "publicKeyType": "type.googleapis.com/google.crypto.tink.EciesAeadHkdfPublicKey",
+      "aeadType": "type.googleapis.com/google.crypto.tink.AesGcmKey",
+      "keysetTypeUrl": "TinkKeysetPublicKeyInfo",
+      "assertionField": "assertion_jwt"
+    }
+  },
+  "endpoints": {
+    "find": "https://photosdata-pa.googleapis.com/6439526531001121323/5084965799730810217",
+    "uploadToken": "https://photos.googleapis.com/data/upload/uploadmedia/interactive",
+    "uploadBytes": "https://photos.googleapis.com/data/upload/uploadmedia/interactive?upload_id={token}",
+    "commit": "https://photosdata-pa.googleapis.com/6439526531001121323/16538846908252377752"
+  },
+  "headers": {
+    "hash": "X-Goog-Hash",
+    "hashAlgorithm": "sha1",
+    "hashFormat": "sha1={base64}",
+    "contentLength": "X-Upload-Content-Length",
+    "uploadId": "X-GUploader-UploadID",
+    "extra": {
+      "x-goog-ext-173412678-bin": "CgcIAhClARgC",
+      "x-goog-ext-174067345-bin": "CgIIAg=="
+    }
+  },
+  "client": {
+    "userAgent": "com.google.android.apps.photos/49029607 (Linux; U; Android 9; en_US; Pixel XL; Build/PQ2A.190205.001; Cronet/127.0.6510.5) (gzip)",
+    "versionCode": 49029607,
+    "platformVersion": 28,
+    "make": "Google"
+  },
+  "quality": {
+    "original": {
+      "code": 3,
+      "model": "Pixel XL"
+    },
+    "compressed": {
+      "code": 1,
+      "model": "Pixel 2"
+    }
+  },
+  "limits": {
+    "photoMaxBytes": 200000000,
+    "videoMaxBytes": 10000000000,
+    "photoTypes": [
+      "jpg",
+      "heic",
+      "heif",
+      "png",
+      "webp",
+      "gif",
+      "avif",
+      "public.camera-raw-image"
+    ],
+    "videoTypes": [
+      "mpg",
+      "mod",
+      "mmv",
+      "tod",
+      "wmv",
+      "asf",
+      "avi",
+      "divx",
+      "mov",
+      "m4v",
+      "3gp",
+      "3g2",
+      "mp4",
+      "m2t",
+      "m2ts",
+      "mts",
+      "mkv",
+      "public.mpeg-2-transport-stream"
+    ]
+  },
+  "wire": {
+    "uploadTokenPrefix": [
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        4,
+        3
+      ]
+    ],
+    "commitUnknownInt": 46000000,
+    "commitTrailer": "AQM="
+  }
+}

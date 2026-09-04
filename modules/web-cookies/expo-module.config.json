@@ -1,0 +1,9 @@
+{
+  "platforms": ["apple", "android"],
+  "apple": {
+    "modules": ["WebCookiesModule"]
+  },
+  "android": {
+    "modules": ["io.github.pixelkeyhq.app.webcookies.WebCookiesModule"]
+  }
+}
