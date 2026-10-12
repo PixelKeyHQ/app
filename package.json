@@ -9,6 +9,7 @@
     "android": "expo run:android",
     "ios": "expo run:ios",
     "typecheck": "tsc --noEmit",
+    "build:web": "node web/build.mjs",
     "test": "node --import tsx --test test/*.test.ts"
   },
   "dependencies": {
