@@ -80,7 +80,9 @@ test('manual page is one self-contained file locked down by its CSP', () => {
   }
   // Check the page markup, not the script bodies (library code may hold such strings).
   const markup = html.replace(/<script>[\s\S]*?<\/script>/g, '<script></script>');
-  assert.doesNotMatch(markup, /\s(?:src|href|action)=["']?(?:https?:)?\/\//i, 'page must not reference remote resources');
+  // Plain <a> links are navigation the user chooses, not resource loads.
+  const resources = markup.replace(/<a\s[^>]*>/gi, '<a>');
+  assert.doesNotMatch(resources, /\s(?:src|href|action)=["']?(?:https?:)?\/\//i, 'page must not reference remote resources');
   assert.doesNotMatch(markup, /<(?:script|style)\s[^>]*>|\sstyle=/i, 'inline style attributes and attributed script/style tags are not covered by the CSP');
 
   const notice = /^<!doctype html>\n<!--([\s\S]*?)-->/.exec(html)?.[1];

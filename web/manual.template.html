@@ -103,7 +103,6 @@ __NOTICE__
   .input::placeholder, .paste-box textarea::placeholder { color: var(--placeholder); opacity: 1; }
   .input:focus, .paste-box textarea:focus { outline: none; border-color: var(--accent); }
   .input.invalid { border-color: var(--danger); }
-  .below { padding: 0 4px; font-size: 13px; line-height: 18px; color: var(--muted); }
   .error { padding: 0 4px; font-size: 13px; line-height: 18px; color: var(--danger-text); }
   .error:empty { display: none; }
   .center { text-align: center; }
@@ -134,6 +133,7 @@ __NOTICE__
   .footnote { display: flex; justify-content: center; padding: 0 8px; }
   .footnote p { display: flex; align-items: flex-start; gap: 6px; font-size: 13px; line-height: 18px; color: var(--muted); }
   .footnote svg { margin-top: 2px; }
+  .footnote a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
 
   .topbar { display: flex; align-items: center; justify-content: space-between; height: 44px; }
   .round {
@@ -219,14 +219,13 @@ __NOTICE__
     </div>
     <div class="field">
       <label for="androidId">Android ID</label>
-      <input class="input mono" id="androidId" type="text" placeholder="16 位十六进制" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" aria-describedby="androidId-error">
+      <input class="input mono" id="androidId" type="text" placeholder="0123456789abcdef" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" aria-describedby="androidId-error">
       <p class="error" id="androidId-error" role="alert"></p>
     </div>
     <div class="field">
       <label for="alias">绑定 alias</label>
-      <input class="input mono" id="alias" type="text" placeholder="可选" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" aria-describedby="alias-error alias-hint">
+      <input class="input mono" id="alias" type="text" placeholder="可选" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" aria-describedby="alias-error">
       <p class="error" id="alias-error" role="alert"></p>
-      <p class="below" id="alias-hint">导出的凭证里有就填，没有就留空</p>
     </div>
 
     <div class="field">
@@ -249,7 +248,7 @@ __NOTICE__
   <div class="footnote">
     <p>
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
-      <span>页面不联网，可以下载后断网打开。凭证只在这台设备上处理。</span>
+      <span>以上凭证仅在本机处理，可<a href="https://github.com/PixelKeyHQ/app/blob/main/web/manual.html">下载</a>或断网使用。</span>
     </p>
   </div>
 </section>
@@ -358,7 +357,6 @@ __NOTICE__
       if (message) inputs[k].setAttribute('aria-invalid', 'true');
       else inputs[k].removeAttribute('aria-invalid');
     });
-    $('alias-hint').hidden = !!$('alias-error').textContent;
     $('generate').disabled = Object.keys(errors).length > 0;
   }
 
