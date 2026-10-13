@@ -8,6 +8,7 @@ An Android tool that turns your own Google account sign-in into a backup profile
 - **Manual entry**: enter email, master token (`aas_et/...`), Android ID and an optional token binding alias yourself, or paste a captured auth request (form-encoded or JSON) from the clipboard to fill the fields.
 - **Device model**: choose which Pixel model the backup identifies as. Pixel and Pixel XL give original quality; Pixel 2 through Pixel 5 give storage saver quality.
 - **Output**: the profile is shown as a QR code and as text. You can copy the text and paste it into a compatible backup client.
+- **Web page**: [manual.html](https://pixelkeyhq.github.io/app/manual.html) is a single-file web page that builds the same profile from credentials you already have (paste an auth request or fill in the fields). Once open it makes no network requests, so you can download it and use it with the network turned off.
 
 The UI is in Chinese.
 
@@ -37,6 +38,12 @@ The profile grants access to your Google account. Only import it on your own dev
 ```sh
 npm install
 npx expo run:android
+```
+
+Rebuild the web page (`web/manual.html`) after changing `web/` or `src/core/`:
+
+```sh
+npm run build:web
 ```
 
 Run the tests:

@@ -1,0 +1,581 @@
+<!doctype html>
+__NOTICE__
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="__CSP__">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#F5F5F5">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#060607">
+<title>Pixel Key 手动配置</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%237B57DB'/%3E%3Cg fill='none' stroke='%23fff' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round' transform='translate(3 3) scale(.75)'%3E%3Ccircle cx='8' cy='15' r='4'/%3E%3Cpath d='M11 12l8.5-8.5M16 7l2.5 2.5M14 9l2 2'/%3E%3C/g%3E%3C/svg%3E">
+<style>
+  /* Colors follow the app theme (src/theme.ts). Text colors that fell below
+     4.5:1 against their background are nudged darker (light) or lighter (dark). */
+  :root {
+    color-scheme: light dark;
+    --bg: #F5F5F5; --surface: #FFFFFF; --field: #FFFFFF; --fg: #18181B;
+    --muted: #66666F; --placeholder: #71717A; --default: #EBEBEC; --separator: rgba(0,0,0,0.08);
+    --accent: #8359E3; --accent-fg: #FCFCFC; --button: #8359E3;
+    --accent-soft: #ECE6FB; --accent-soft-fg: #6E4BC7;
+    --danger: #FF383C; --danger-text: #D70015; --nav-button: rgba(255,255,255,0.9);
+    --shadow: 0 2px 4px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06), 0 0 1px rgba(0,0,0,0.06);
+    --tab-shadow: 0 1px 3px rgba(0,0,0,0.12);
+    --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Roboto, "Helvetica Neue", system-ui, sans-serif;
+    --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #060607; --surface: #18181B; --field: #18181B; --fg: #FCFCFC;
+      --muted: #9F9FA9; --placeholder: #9F9FA9; --default: #27272A; --separator: rgba(255,255,255,0.10);
+      --accent: #9D82F1; --accent-fg: #FCFCFC; --button: #8359E3;
+      --accent-soft: #2A2240; --accent-soft-fg: #BBA6FF;
+      --danger: #DB3B3E; --danger-text: #FF6467; --nav-button: rgba(39,39,42,0.9);
+      --shadow: none; --tab-shadow: none;
+    }
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  body {
+    margin: 0; min-height: 100vh; background: var(--bg); color: var(--fg);
+    font-family: var(--font); font-size: 15px; line-height: 1.4;
+    -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  }
+  h1, h2, p { margin: 0; }
+  button { font: inherit; color: inherit; background: none; border: 0; padding: 0; margin: 0; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  button:disabled { cursor: default; }
+  input, select, textarea { font: inherit; color: inherit; margin: 0; }
+  svg { display: block; flex-shrink: 0; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .sr { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+  .offscreen { position: fixed; top: 0; left: -9999px; opacity: 0; }
+  .mono { font-family: var(--mono); }
+
+  .page { display: flex; justify-content: center; padding: 48px 16px 40px; }
+  .wrap { width: 100%; max-width: 440px; }
+  .step, .stack { display: flex; flex-direction: column; }
+  #step-form { gap: 24px; }
+  #step-result { gap: 16px; }
+  .stack { gap: 16px; }
+
+  .brand { display: flex; align-items: center; gap: 12px; padding: 0 4px; }
+  .app-icon {
+    width: 44px; height: 44px; border-radius: 12px; color: #FFFFFF;
+    background: linear-gradient(160deg, #A58BFF, #6E4BC7);
+    box-shadow: 0 4px 12px rgba(110,75,199,0.24);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .brand h1 { font-size: 22px; line-height: 28px; font-weight: 700; }
+  .brand p { font-size: 14px; line-height: 20px; color: var(--muted); }
+
+  .soft-pill {
+    height: 44px; border-radius: 22px; width: 100%;
+    background: var(--accent-soft); color: var(--accent-soft-fg);
+    font-size: 16px; font-weight: 600;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .soft-pill:active, .pill:active:not(:disabled), .round:active, .text-btn:active { opacity: 0.75; }
+
+  .paste-box { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+  .paste-box label { padding: 0 4px; font-size: 15px; font-weight: 500; }
+  .paste-box textarea {
+    width: 100%; min-height: 108px; resize: vertical; padding: 12px 14px;
+    border-radius: 14px; border: 1.5px solid transparent; background: var(--field); box-shadow: var(--shadow);
+    font-family: var(--mono); font-size: 13px; line-height: 19px; word-break: break-all;
+  }
+  .paste-actions { display: flex; justify-content: flex-end; gap: 8px; }
+  .paste-actions button { height: 36px; padding: 0 16px; border-radius: 18px; font-size: 15px; font-weight: 600; }
+  .paste-actions .secondary { background: var(--default); color: var(--fg); }
+  .paste-actions .soft { background: var(--accent-soft); color: var(--accent-soft-fg); }
+
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .field > label { padding: 0 4px; font-size: 15px; font-weight: 500; }
+  .input {
+    width: 100%; height: 48px; padding: 0 14px;
+    border-radius: 14px; border: 1.5px solid transparent;
+    background: var(--field); box-shadow: var(--shadow);
+    font-size: 17px; outline: none;
+  }
+  .input.mono { font-size: 15px; }
+  .input::placeholder, .paste-box textarea::placeholder { color: var(--placeholder); opacity: 1; }
+  .input:focus, .paste-box textarea:focus { outline: none; border-color: var(--accent); }
+  .input.invalid { border-color: var(--danger); }
+  .below { padding: 0 4px; font-size: 13px; line-height: 18px; color: var(--muted); }
+  .error { padding: 0 4px; font-size: 13px; line-height: 18px; color: var(--danger-text); }
+  .error:empty { display: none; }
+  .center { text-align: center; }
+  .paste-group > .error { margin-top: 8px; }
+
+  .select { position: relative; border-radius: 14px; background: var(--field); box-shadow: var(--shadow); }
+  .select select {
+    -webkit-appearance: none; appearance: none; width: 100%; height: 52px;
+    border: 0; border-radius: 14px; background: transparent;
+    padding: 0 172px 0 14px; font-size: 17px; font-weight: 600; cursor: pointer;
+  }
+  .select select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .select-end {
+    position: absolute; top: 0; bottom: 0; right: 14px; pointer-events: none;
+    display: flex; align-items: center; gap: 10px; color: var(--muted);
+  }
+  .tag { font-size: 13px; font-weight: 600; line-height: 18px; color: var(--accent-soft-fg); background: var(--accent-soft); padding: 3px 10px; border-radius: 12px; white-space: nowrap; }
+
+  .pill {
+    height: 50px; border-radius: 25px; width: 100%;
+    background: var(--button); color: var(--accent-fg);
+    font-size: 17px; font-weight: 600;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .pill:disabled { opacity: 0.5; }
+  .form-actions { display: flex; flex-direction: column; gap: 10px; }
+
+  .footnote { display: flex; justify-content: center; padding: 0 8px; }
+  .footnote p { display: flex; align-items: flex-start; gap: 6px; font-size: 13px; line-height: 18px; color: var(--muted); }
+  .footnote svg { margin-top: 2px; }
+
+  .topbar { display: flex; align-items: center; justify-content: space-between; height: 44px; }
+  .round {
+    width: 44px; height: 44px; border-radius: 22px; color: var(--fg);
+    background: var(--nav-button); box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 0 0 0.5px var(--separator);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .text-btn { height: 44px; padding: 0 4px; font-size: 16px; font-weight: 500; color: var(--accent-soft-fg); }
+
+  .account { display: flex; align-items: center; gap: 12px; padding: 0 4px; min-width: 0; }
+  .avatar {
+    width: 40px; height: 40px; border-radius: 20px; flex-shrink: 0;
+    background: var(--accent-soft); color: var(--accent-soft-fg);
+    font-size: 17px; font-weight: 700; display: flex; align-items: center; justify-content: center;
+  }
+  .account > div { min-width: 0; }
+  .account-email { font-size: 17px; font-weight: 600; line-height: 22px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .account-meta { font-size: 13px; line-height: 18px; color: var(--muted); }
+
+  .tabs { display: flex; padding: 3px; border-radius: 12px; background: var(--default); }
+  .tabs button { flex: 1; height: 32px; border-radius: 9px; font-size: 14px; font-weight: 500; color: var(--muted); }
+  .tabs button[aria-selected="true"] { background: var(--surface); color: var(--fg); font-weight: 600; box-shadow: var(--tab-shadow); }
+
+  .card { background: var(--surface); border-radius: 24px; box-shadow: var(--shadow); padding: 18px 16px; }
+  .view { display: flex; flex-direction: column; gap: 14px; }
+  .qr { align-self: center; width: 100%; max-width: 272px; padding: 12px; background: #FFFFFF; border-radius: 18px; }
+  .qr svg { width: 100%; height: auto; }
+  .code {
+    height: 248px; overflow: auto; padding: 14px; border-radius: 14px; background: var(--bg);
+    font-size: 13px; line-height: 19px; color: var(--muted);
+    word-break: break-all; overflow-wrap: anywhere; -webkit-user-select: all; user-select: all;
+  }
+  .caption { text-align: center; font-size: 14px; line-height: 20px; color: var(--muted); }
+  .note { padding: 0 6px; font-size: 13px; line-height: 18px; color: var(--muted); }
+  .copy-area { display: flex; flex-direction: column; gap: 10px; }
+
+  @media (max-width: 480px) {
+    .page { padding-top: 24px; }
+  }
+</style>
+</head>
+<body>
+<main class="page">
+<div class="wrap">
+
+<section class="step" id="step-form" aria-labelledby="title">
+  <header class="brand">
+    <span class="app-icon" aria-hidden="true">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="M11 12l8.5-8.5M16 7l2.5 2.5M14 9l2 2"/></svg>
+    </span>
+    <div>
+      <h1 id="title">Pixel Key</h1>
+      <p>用已有凭证生成备份配置</p>
+    </div>
+  </header>
+
+  <form id="form" class="stack" autocomplete="off" novalidate>
+    <div class="paste-group">
+      <button type="button" class="soft-pill" id="paste">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="4" width="10" height="4" rx="1"/><path d="M7 6H6a1.5 1.5 0 0 0-1.5 1.5v11A1.5 1.5 0 0 0 6 20h12a1.5 1.5 0 0 0 1.5-1.5v-11A1.5 1.5 0 0 0 18 6h-1"/></svg>
+        粘贴认证请求自动填写
+      </button>
+      <div class="paste-box" id="paste-box" hidden>
+        <label for="paste-input">无法读取剪贴板，请把认证请求粘贴到这里</label>
+        <textarea id="paste-input" rows="4" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="androidId=…&amp;Email=…&amp;Token=aas_et/…"></textarea>
+        <div class="paste-actions">
+          <button type="button" class="secondary" id="paste-cancel">取消</button>
+          <button type="button" class="soft" id="paste-apply">填入</button>
+        </div>
+      </div>
+      <p class="error center" id="paste-error" role="alert"></p>
+    </div>
+
+    <div class="field">
+      <label for="email">邮箱</label>
+      <input class="input" id="email" type="text" inputmode="email" placeholder="name@gmail.com" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" aria-describedby="email-error">
+      <p class="error" id="email-error" role="alert"></p>
+    </div>
+    <div class="field">
+      <label for="token">Master Token</label>
+      <input class="input mono" id="token" type="text" placeholder="aas_et/…" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" aria-describedby="token-error">
+      <p class="error" id="token-error" role="alert"></p>
+    </div>
+    <div class="field">
+      <label for="androidId">Android ID</label>
+      <input class="input mono" id="androidId" type="text" placeholder="16 位十六进制" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" aria-describedby="androidId-error">
+      <p class="error" id="androidId-error" role="alert"></p>
+    </div>
+    <div class="field">
+      <label for="alias">绑定 alias</label>
+      <input class="input mono" id="alias" type="text" placeholder="可选" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" aria-describedby="alias-error alias-hint">
+      <p class="error" id="alias-error" role="alert"></p>
+      <p class="below" id="alias-hint">导出的凭证里有就填，没有就留空</p>
+    </div>
+
+    <div class="field">
+      <label for="model">备份机型</label>
+      <div class="select">
+        <select id="model" aria-describedby="model-quality"></select>
+        <span class="select-end">
+          <span class="tag" id="model-quality"></span>
+          <svg width="12" height="8" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1.5l5 5 5-5"/></svg>
+        </span>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <p class="error center" id="form-error" role="alert"></p>
+      <button type="submit" class="pill" id="generate" disabled>生成</button>
+    </div>
+  </form>
+
+  <div class="footnote">
+    <p>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+      <span>页面不联网，可以下载后断网打开。凭证只在这台设备上处理。</span>
+    </p>
+  </div>
+</section>
+
+<section class="step" id="step-result" aria-labelledby="result-title" hidden>
+  <h2 class="sr" id="result-title" tabindex="-1">备份配置</h2>
+  <div class="topbar">
+    <button type="button" class="round" id="back" aria-label="返回修改">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5.5L8.5 12l6.5 6.5"/></svg>
+    </button>
+    <button type="button" class="text-btn" id="reset">清空</button>
+  </div>
+
+  <div class="account">
+    <span class="avatar" id="avatar" aria-hidden="true"></span>
+    <div>
+      <p class="account-email" id="account"></p>
+      <p class="account-meta" id="account-meta"></p>
+    </div>
+  </div>
+
+  <div class="tabs" role="tablist" aria-label="显示方式">
+    <button type="button" role="tab" id="tab-qr" aria-controls="panel" aria-selected="true">二维码</button>
+    <button type="button" role="tab" id="tab-text" aria-controls="panel" aria-selected="false" tabindex="-1">文本</button>
+  </div>
+
+  <div class="card" id="panel" role="tabpanel" aria-labelledby="tab-qr">
+    <div class="view" id="view-qr">
+      <div class="qr" id="qr" role="img" aria-label="配置二维码"></div>
+      <p class="caption">用备份 App 扫码导入</p>
+    </div>
+    <div class="view" id="view-qr-too-big" hidden>
+      <p class="caption">太长，放不进二维码，请用文本。</p>
+    </div>
+    <div class="view" id="view-text" hidden>
+      <div class="code mono" id="code" tabindex="0" role="region" aria-label="配置文本"></div>
+      <p class="caption">复制后在备份 App 中粘贴导入</p>
+    </div>
+  </div>
+
+  <p class="note">这段信息能直接登录你的 Google 账号，只在自己的设备上扫码或粘贴。</p>
+
+  <div class="copy-area">
+    <p class="error center" id="copy-error" role="alert"></p>
+    <button type="button" class="pill" id="copy">
+      <svg id="copy-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="4" width="10" height="4" rx="1"/><path d="M7 6H6a1.5 1.5 0 0 0-1.5 1.5v11A1.5 1.5 0 0 0 6 20h12a1.5 1.5 0 0 0 1.5-1.5v-11A1.5 1.5 0 0 0 18 6h-1"/></svg>
+      <svg id="copied-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" hidden><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+      <span id="copy-label">复制配置文本</span>
+    </button>
+    <p class="sr" id="copy-status" role="status"></p>
+  </div>
+</section>
+
+</div>
+</main>
+
+<script>__BUNDLE__</script>
+<script>
+(function () {
+  'use strict';
+  var PK = globalThis.PixelKey;
+  var $ = function (id) { return document.getElementById(id); };
+  var KEYS = ['email', 'token', 'androidId', 'alias'];
+  var inputs = {};
+  KEYS.forEach(function (k) { inputs[k] = $(k); });
+  var state = { touched: {}, focus: null, code: '', mode: 'qr', fits: true, copyTimer: 0 };
+
+  // ---- Form step -------------------------------------------------------
+
+  var model = $('model');
+  function group(label, list) {
+    var og = document.createElement('optgroup');
+    og.label = label;
+    list.forEach(function (name) {
+      var o = document.createElement('option');
+      o.value = name; o.textContent = name;
+      og.appendChild(o);
+    });
+    model.appendChild(og);
+  }
+  group('原画质 · 不占空间', PK.ORIGINAL_MODELS);
+  group('节省空间画质 · 不占空间', PK.SAVER_MODELS);
+  model.value = PK.DEFAULT_MODEL;
+  function showQuality() {
+    $('model-quality').textContent = PK.isOriginalModel(model.value) ? '原画质 · 不占空间' : '节省空间 · 不占空间';
+  }
+  model.addEventListener('change', showQuality);
+  showQuality();
+
+  function values() {
+    var v = {};
+    KEYS.forEach(function (k) { v[k] = inputs[k].value; });
+    return v;
+  }
+
+  function setText(el, text) { if (el.textContent !== text) el.textContent = text; }
+
+  // Same rule as the app: an error shows once the field has a value, has
+  // been left at least once, and is not being edited right now.
+  function render() {
+    var v = values(), errors = PK.manualErrors(v);
+    KEYS.forEach(function (k) {
+      var message = v[k] && state.touched[k] && state.focus !== k ? (errors[k] || '') : '';
+      setText($(k + '-error'), message);
+      inputs[k].classList.toggle('invalid', !!message);
+      if (message) inputs[k].setAttribute('aria-invalid', 'true');
+      else inputs[k].removeAttribute('aria-invalid');
+    });
+    $('alias-hint').hidden = !!$('alias-error').textContent;
+    $('generate').disabled = Object.keys(errors).length > 0;
+  }
+
+  KEYS.forEach(function (k) {
+    var el = inputs[k];
+    el.addEventListener('input', function () { setText($('form-error'), ''); render(); });
+    el.addEventListener('focus', function () { state.focus = k; render(); });
+    el.addEventListener('blur', function () { state.focus = null; state.touched[k] = true; render(); });
+  });
+
+  // ---- Paste an auth request ------------------------------------------
+
+  function pasteError(message) { setText($('paste-error'), message); }
+
+  function fillFrom(text) {
+    var parsed;
+    try { parsed = PK.parseAuthRequest(text); } catch (e) { pasteError(PK.safeMessage(e)); return false; }
+    KEYS.forEach(function (k) { inputs[k].value = parsed[k]; state.touched[k] = true; });
+    pasteError('');
+    setText($('form-error'), '');
+    render();
+    return true;
+  }
+
+  function openPasteBox() {
+    $('paste-box').hidden = false;
+    $('paste-input').focus();
+  }
+  function closePasteBox() {
+    $('paste-input').value = '';
+    $('paste-box').hidden = true;
+    $('paste').focus();
+  }
+
+  $('paste').addEventListener('click', function () {
+    pasteError('');
+    var clip = navigator.clipboard;
+    if (!clip || typeof clip.readText !== 'function') { openPasteBox(); return; }
+    clip.readText().then(function (text) {
+      if (fillFrom(text) && !$('paste-box').hidden) closePasteBox();
+    }, function () {
+      // Permission denied, or no clipboard access on file:// — paste by hand.
+      openPasteBox();
+    });
+  });
+  $('paste-apply').addEventListener('click', function () {
+    if (fillFrom($('paste-input').value)) closePasteBox();
+  });
+  $('paste-cancel').addEventListener('click', function () { pasteError(''); closePasteBox(); });
+  $('paste-input').addEventListener('keydown', function (ev) {
+    if (ev.key === 'Enter' && (ev.metaKey || ev.ctrlKey)) { ev.preventDefault(); $('paste-apply').click(); }
+    else if (ev.key === 'Escape') { ev.preventDefault(); $('paste-cancel').click(); }
+  });
+
+  // ---- Generate ----------------------------------------------------------
+
+  $('form').addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var v = values();
+    if (Object.keys(PK.manualErrors(v)).length) {
+      KEYS.forEach(function (k) { state.touched[k] = true; });
+      render();
+      return;
+    }
+    var profile;
+    try { profile = PK.manualProfile(v, model.value); } catch (e) { setText($('form-error'), PK.safeMessage(e)); return; }
+    showResult(profile);
+  });
+
+  // ---- Result step -------------------------------------------------------
+
+  var SVG = 'http://www.w3.org/2000/svg';
+  // Same geometry as the app's ProfileQr: 2-module quiet zone, one path.
+  function renderQr(link) {
+    var cells = PK.qrMatrix(link), side = cells.length + 4, d = '';
+    for (var y = 0; y < cells.length; y++) {
+      var row = cells[y];
+      for (var x = 0; x < row.length;) {
+        if (!row[x]) { x++; continue; }
+        var end = x; while (row[end]) end++;
+        d += 'M' + (x + 2) + ',' + (y + 2) + 'h' + (end - x) + 'v1h-' + (end - x) + 'z';
+        x = end;
+      }
+    }
+    var svg = document.createElementNS(SVG, 'svg');
+    svg.setAttribute('viewBox', '0 0 ' + side + ' ' + side);
+    svg.setAttribute('width', '248'); svg.setAttribute('height', '248');
+    svg.setAttribute('shape-rendering', 'crispEdges');
+    svg.setAttribute('aria-hidden', 'true');
+    var bg = document.createElementNS(SVG, 'rect');
+    bg.setAttribute('width', side); bg.setAttribute('height', side); bg.setAttribute('fill', '#fff');
+    var path = document.createElementNS(SVG, 'path');
+    path.setAttribute('d', d); path.setAttribute('fill', '#000');
+    svg.appendChild(bg); svg.appendChild(path);
+    $('qr').appendChild(svg);
+  }
+
+  var tabs = { qr: $('tab-qr'), text: $('tab-text') };
+  function setMode(mode, focus) {
+    state.mode = mode;
+    Object.keys(tabs).forEach(function (m) {
+      var on = m === mode;
+      tabs[m].setAttribute('aria-selected', on ? 'true' : 'false');
+      tabs[m].tabIndex = on ? 0 : -1;
+    });
+    $('panel').setAttribute('aria-labelledby', tabs[mode].id);
+    $('view-qr').hidden = !(mode === 'qr' && state.fits);
+    $('view-qr-too-big').hidden = !(mode === 'qr' && !state.fits);
+    $('view-text').hidden = mode !== 'text';
+    if (focus) tabs[mode].focus();
+  }
+  tabs.qr.addEventListener('click', function () { setMode('qr'); });
+  tabs.text.addEventListener('click', function () { setMode('text'); });
+  $('step-result').querySelector('[role="tablist"]').addEventListener('keydown', function (ev) {
+    var next = { ArrowLeft: 'qr', Home: 'qr', ArrowRight: 'text', End: 'text' }[ev.key];
+    if (next) { ev.preventDefault(); setMode(next, true); }
+  });
+
+  function setCopied(copied) {
+    $('copy-icon').hidden = copied;
+    $('copied-icon').hidden = !copied;
+    setText($('copy-label'), copied ? '已复制' : '复制配置文本');
+    setText($('copy-status'), copied ? '已复制' : '');
+  }
+  function resetCopy() {
+    clearTimeout(state.copyTimer);
+    setCopied(false);
+    setText($('copy-error'), '');
+  }
+
+  function clearResult() {
+    resetCopy();
+    state.code = '';
+    $('qr').textContent = '';
+    $('code').textContent = '';
+    setText($('account'), '');
+    setText($('account-meta'), '');
+    setText($('avatar'), '');
+  }
+
+  function showResult(profile) {
+    clearResult();
+    // The app copies the bare profile code and puts the full link in the QR.
+    var code = PK.encodeProfile(profile), link = PK.profileLink(profile);
+    var email = profile.credential.Email || '';
+    state.code = code;
+    state.fits = PK.qrFits(link);
+    if (state.fits) {
+      try { renderQr(link); } catch (e) { state.fits = false; }
+    }
+    $('code').textContent = code;
+    setText($('avatar'), (email.charAt(0) || '?').toUpperCase());
+    setText($('account'), PK.maskedAccount(email));
+    setText($('account-meta'), PK.profileModel(profile) + ' · ' + (profile.quality.original ? '原画质' : '节省空间画质'));
+    setMode(state.fits ? 'qr' : 'text');
+    $('step-form').hidden = true;
+    $('step-result').hidden = false;
+    window.scrollTo(0, 0);
+    $('result-title').focus();
+  }
+
+  function showForm(focusEl) {
+    clearResult();
+    $('step-result').hidden = true;
+    $('step-form').hidden = false;
+    window.scrollTo(0, 0);
+    focusEl.focus();
+  }
+
+  $('back').addEventListener('click', function () { showForm($('generate')); });
+  $('reset').addEventListener('click', function () {
+    KEYS.forEach(function (k) { inputs[k].value = ''; });
+    state.touched = {};
+    state.focus = null;
+    $('paste-input').value = '';
+    $('paste-box').hidden = true;
+    pasteError('');
+    setText($('form-error'), '');
+    render();
+    showForm($('paste'));
+  });
+
+  function legacyCopy(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.className = 'offscreen';
+    var previous = document.activeElement;
+    document.body.appendChild(ta);
+    ta.select();
+    ta.setSelectionRange(0, text.length);
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    document.body.removeChild(ta);
+    if (previous && previous.focus) previous.focus();
+    return ok;
+  }
+
+  $('copy').addEventListener('click', function () {
+    var code = state.code;
+    setText($('copy-error'), '');
+    function done(ok) {
+      if (!ok) { setCopied(false); setText($('copy-error'), '复制失败，请切换到文本后手动复制。'); return; }
+      setCopied(true);
+      clearTimeout(state.copyTimer);
+      state.copyTimer = setTimeout(function () { setCopied(false); }, 2000);
+    }
+    var clip = navigator.clipboard;
+    if (clip && typeof clip.writeText === 'function') {
+      clip.writeText(code).then(function () { done(true); }, function () { done(legacyCopy(code)); });
+    } else {
+      done(legacyCopy(code));
+    }
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
