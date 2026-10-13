@@ -1,0 +1,48 @@
+name: Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Build web/manual.html
+        run: npm run build:web
+      - name: Check the committed page is up to date
+        run: git diff --exit-code -- web/manual.html
+      - run: npm test
+      - name: Collect the page
+        run: |
+          mkdir -p _site
+          cp web/manual.html _site/manual.html
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}manual.html
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
