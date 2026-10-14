@@ -1,0 +1,103 @@
+name: Desktop
+
+on:
+  push:
+    branches: [main]
+    paths: ['desktop/**', 'src/core/**', 'web/**', 'assets/**', 'package*.json', '.gitattributes', '.github/workflows/desktop.yml']
+  pull_request:
+    paths: ['desktop/**', 'src/core/**', 'web/**', 'assets/**', 'package*.json', '.gitattributes', '.github/workflows/desktop.yml']
+
+permissions:
+  contents: read
+
+jobs:
+  version:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.check.outputs.version }}
+      release: ${{ steps.check.outputs.release }}
+    steps:
+      - uses: actions/checkout@v5
+      - id: check
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version=$(node -p "require('./desktop/package.json').version")
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          release=false
+          if [ "$GITHUB_EVENT_NAME" = push ] && ! gh release view "desktop-v$version" --repo "$GITHUB_REPOSITORY" > /dev/null 2>&1; then
+            release=true
+          fi
+          echo "release=$release" >> "$GITHUB_OUTPUT"
+
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    env:
+      CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            desktop/package-lock.json
+      - run: npm ci
+      - run: npm ci --prefix desktop
+      - run: node desktop/node_modules/electron/install.js
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm --prefix desktop run typecheck
+      - run: npm --prefix desktop test
+      - if: runner.os == 'Linux'
+        run: sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
+      - if: runner.os != 'Linux'
+        run: npm --prefix desktop run test:smoke
+      - if: runner.os == 'Linux'
+        run: xvfb-run -a npm --prefix desktop run test:smoke
+      - run: npm --prefix desktop run dist -- --publish never
+      - run: node desktop/hash-release.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pixel-key-${{ runner.os }}
+          path: |
+            desktop/release/*.dmg
+            desktop/release/*.exe
+            desktop/release/*.deb
+            desktop/release/*.sha256
+          if-no-files-found: error
+          retention-days: 14
+
+  release:
+    needs: [version, build]
+    if: needs.version.outputs.release == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    concurrency: desktop-release
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: release
+          merge-multiple: true
+      - env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: desktop-v${{ needs.version.outputs.version }}
+        run: |
+          {
+            echo 'Pixel Key for macOS, Windows and Linux. Sign in with your own Google account, then scan the QR code or copy the text into your backup app.'
+            echo
+            echo 'macOS: if the app does not open, go to System Settings → Privacy & Security and click Open Anyway.'
+            echo
+            echo 'SHA-256:'
+            echo '```'
+            cat release/*.sha256
+            echo '```'
+          } > notes.md
+          gh release create "$TAG" release/*.dmg release/*.exe release/*.deb release/*.sha256 \
+            --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --title "$TAG" --notes-file notes.md --latest=false
