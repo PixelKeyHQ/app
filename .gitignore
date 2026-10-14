@@ -15,5 +15,9 @@ build/
 .DS_Store
 __pycache__/
 credentials.json
+desktop/dist/
+desktop/release/
+desktop/test-results/
+desktop/playwright-report/
 *.jks
 *.keystore

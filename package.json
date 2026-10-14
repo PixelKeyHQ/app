@@ -10,7 +10,10 @@
     "ios": "expo run:ios",
     "typecheck": "tsc --noEmit",
     "build:web": "node web/build.mjs",
-    "test": "node --import tsx --test test/*.test.ts"
+    "test": "node --import tsx --test test/*.test.ts",
+    "desktop": "npm --prefix desktop start",
+    "build:desktop": "npm --prefix desktop run build",
+    "test:desktop": "npm --prefix desktop test"
   },
   "dependencies": {
     "@noble/ciphers": "2.0.1",

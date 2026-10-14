@@ -25,6 +25,8 @@ The UI is in Chinese.
 
 Download the APK from [GitHub Releases](../../releases) and sideload it. Pixel Key is not on Google Play.
 
+The macOS, Windows and Linux apps are on the same page, under the `desktop-v*` releases.
+
 ## Usage
 
 1. Pick the device model on the home screen (optional).
@@ -34,6 +36,8 @@ Download the APK from [GitHub Releases](../../releases) and sideload it. Pixel K
 The profile grants access to your Google account. Only import it on your own devices.
 
 ## Build
+
+The desktop app is built from [desktop/](desktop/README.md).
 
 ```sh
 npm install
